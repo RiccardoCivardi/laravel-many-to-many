@@ -30,6 +30,13 @@
         </li>
 
         <li class="nav-item">
+            <a  class="nav-link" href="{{route('admin.technologies.index')}}">
+                <i class="fa-solid fa-tag fs-5 me-1"></i>
+                <span class="d-none d-xl-inline">Tecnologie</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a  class="nav-link" href="{{route('admin.projects.create')}}">
                 <i class="fa-solid fa-calendar-plus fs-5 me-1"></i>
                 <span class="d-none d-xl-inline">Nuovo Progetto</span>
