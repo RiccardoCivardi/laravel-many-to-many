@@ -63,6 +63,7 @@
                     <th scope="col">
                         <a class="link-custom {{$class_active_name}}" href="{{route('admin.projects.orderby',['name',$direction])}}">NOME PROGETTO</a>
                     </th>
+                    <th scope="col">Tecnologie</th>
                     <th scope="col">
                         <a class="link-custom {{$class_active_updated_at}}" href="{{route('admin.projects.orderby',['updated_at',$direction])}}">ULTIMA MODIFICA</a>
                     </th>
@@ -105,6 +106,16 @@
                         <td>
                             {{$project->name}}
                             <span class="badge {{$badge_class}}">{{$project->type?->name}}</span>
+                        </td>
+
+                        <td>
+                            @forelse ($project->technologies as $technology)
+                                <span class="badge text-bg-warning">{{$technology->name}}</span>
+
+                            @empty
+                                - no data -
+                            @endforelse
+
                         </td>
 
                         <td>{{date_format(date_create($project->update_at), 'd/m/Y')}}</td>
