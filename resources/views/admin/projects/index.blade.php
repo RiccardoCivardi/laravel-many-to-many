@@ -87,7 +87,8 @@
                                 '3' => 'text-bg-success',
                                 '4' => 'text-bg-danger',
                                 '5' => 'text-bg-warning',
-                                '6' => 'text-bg-info'
+                                '6' => 'text-bg-info',
+                                '7' => 'text-bg-light'
                             ];
 
                             // dd($project->type?->id);

@@ -25,6 +25,11 @@ class Project extends Model
         return $this->belongsTo(Type::class);
     }
 
+    // relazione many to many
+    public function technologies(){
+        return $this->belongsToMany(Technology::class);
+    }
+
     // funzione per generare lo slug e se esiste gia modificarlo tramite contatore
     public static function generateSlug($string){
         $slug = Str::slug($string, '-');
