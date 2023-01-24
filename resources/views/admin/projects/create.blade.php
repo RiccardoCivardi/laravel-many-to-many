@@ -56,6 +56,22 @@
             </div>
 
             <div class="mb-3">
+                <p class="form-label">Tecnologie</p>
+                @foreach ($technologies as $technology )
+                    <input type="checkbox"
+                        id="technology{{$loop->iteration}}"
+                        name="technologies[]"
+                        value="{{$technology->id}}"
+                        @if (in_array($technology->id, old('technologies',[])))
+                            checked
+                        @endif
+                    >
+                    <label class="me-2" for="technology{{$loop->iteration}}">{{$technology->name}}</label>
+                @endforeach
+
+            </div>
+
+            <div class="mb-3">
                 <label for="summary" class="form-label">Descrizione del progetto</label>
                 <textarea name="summary" class="form-control @error('summary') is-invalid @enderror" id="summary" placeholder="Inserisci la descrizione del progetto" row="3">{{old('summary')}}</textarea>
                 @error('summary')

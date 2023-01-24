@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -59,8 +60,9 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -99,6 +101,12 @@ class ProjectController extends Controller
         $new_project = Project::create($form_data);
 
 
+        // per aggiungere i tag nella tabella ponte prima devo avere salvato la nuova entità perché l'ID del nuovo post lo ottengo solo dopo averlo salvato
+
+        if(array_key_exists('technologies',$form_data)){
+            // in attach passo l'array dei tag (che poi è un array degli id dei tag in relazione)
+            $new_project->technologies()->attach($form_data['technologies']);
+        }
 
 
         //faccio il redirect a index passando in sessione l'eliminazione per mostrare l'alert
@@ -125,8 +133,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project','types'));
+        return view('admin.projects.edit', compact('project','types', 'technologies'));
     }
 
     /**

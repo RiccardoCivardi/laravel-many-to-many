@@ -67,7 +67,16 @@
 
                 <div class="card-body">
                     <h3 class="card-title">{{$project->name}}</h3>
-                    <span class="badge {{$badge_class}} mb-2">{{$project->type?->name}}</span>
+                    <span class="badge {{$badge_class}} mb-2 fs-4">{{$project->type?->name}}</span>
+
+                    @if ($project->technologies)
+                         <div class="mb-2">
+                            @foreach ($project->technologies as $technology)
+                                <span class="badge text-bg-warning">{{$technology->name}}</span>
+                            @endforeach
+                        </div>
+                    @endif
+
                     <h6 class="card-title">Data di creazione: {{date_format(date_create($project->created_at), 'd/m/Y H:i')}}</h6>
                     <h6 class="card-title">Data ultima modifica: {{date_format(date_create($project->update_at), 'd/m/Y H:i')}}</h6>
                     <h6 class="card-title">CLIENTE: {{$project->client_name}}</h6>
